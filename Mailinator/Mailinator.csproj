@@ -87,6 +87,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GmailAPI\GmailAPI.csproj">
+      <Project>{86488F89-3A55-4567-828B-F7F908300117}</Project>
+      <Name>GmailAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

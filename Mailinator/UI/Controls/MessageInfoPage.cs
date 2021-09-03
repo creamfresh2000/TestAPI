@@ -9,9 +9,9 @@ namespace Mailinator.UI.Controls
         {
         }
 
-        public IWebElement MailRecipient => Driver.FindElement(By.XPath("//div[contains(text(),'testautomationpaul')]"));
+        public IWebElement MailRecipient => Driver.FindElement(By.XPath("//div[contains(text(),'To')]/following-sibling::div"));
 
-        public IWebElement MailSender => Driver.FindElement(By.XPath("//div[contains(text(),'creamfresh2000@gmail.com')]"));
+        public IWebElement MailSender => Driver.FindElement(By.XPath("//div[contains(text(),'From')]/following-sibling::div"));
 
     }
 }
