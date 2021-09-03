@@ -1,4 +1,5 @@
-﻿using Mailinator.UI.Actions;
+﻿using GmailAPI.Builder;
+using Mailinator.UI.Actions;
 
 namespace TestAPI.Tests.Base
 {
@@ -6,9 +7,10 @@ namespace TestAPI.Tests.Base
     {
         protected HomeActions HomeActions;
         protected InboxActions InboxActions;
-     
+        protected EmailBuilder EmailBuilder;
         protected override void Initialize()
         {
+            EmailBuilder = new EmailBuilder();
             HomeActions = new HomeActions(Driver);
             InboxActions = new InboxActions(Driver);
         }

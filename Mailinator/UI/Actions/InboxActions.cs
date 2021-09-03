@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using GmailAPI.Objects;
 using Mailinator.UI.Controls;
 using Mailinator.Utils;
 using OpenQA.Selenium;
@@ -25,16 +26,16 @@ namespace Mailinator.UI.Actions
 
         public string GetRecipientInfo()
         {
-            Debug.WriteLine("[ASSERT] : Cheking recipient email address is 'testautomationpaul'");
-            Wait.UntilTrue(() => _messageInfoPage.MailRecipient.Displayed);
+            Wait.UntilTrue(() => !string.IsNullOrEmpty(_messageInfoPage.MailRecipient.Text));
+            Debug.WriteLine($"[ASSERT] : Cheking recipient email address.");
             return _messageInfoPage.MailRecipient.Text;
             
         }
 
         public string GetSenderInfo()
         {
-            Debug.WriteLine("[ASSERT] : Cheking sender email address is 'creamfresh2000@gmail.com'");
-            Wait.UntilTrue(() => _messageInfoPage.MailSender.Displayed);
+            Wait.UntilTrue(() => !string.IsNullOrEmpty(_messageInfoPage.MailSender.Text));
+            Debug.WriteLine($"[ASSERT] : Cheking sender email address.");
             return _messageInfoPage.MailSender.Text;
         }
 

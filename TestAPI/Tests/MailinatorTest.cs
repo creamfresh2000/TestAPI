@@ -6,23 +6,24 @@ namespace TestAPI.Tests
 {
     [TestClass]
 
-    public class MailinatorTest : MailinatorBase
+    public class MailinatorTest : MailinatorBase 
     {
 
         [TestMethod]
         public void GmailMailinatorTest()
         {
+            var emailInfo = EmailBuilder.StandardEmail();
             Debug.WriteLine("[STEP] : Sending email");
-            var sendMessage = GmailApiActions.SendMessage("My test subject", "Message body. Lorem ipsum expiliarmus abrakadabrus.", "testautomationpaul@mailinator.com");
-            Debug.WriteLine("[INFO] : Received message from creamfresh2000@gmail.com");
+            var sendMessage = GmailApiActions.SendMessage(emailInfo); 
+            Debug.WriteLine($"[INFO] : Received message from {emailInfo.Gmail} ");
             Debug.WriteLine("[ASSERT] : Ensure that first label id equals to 'SENT' ");
             Assert.IsTrue(sendMessage.LabelIds[0].Equals("SENT"));
             Debug.WriteLine("[STEP] : Checking the mail for a letter");
             HomeActions.NavigateTo("https://www.mailinator.com/");
-            HomeActions.SearchInbox("testautomationpaul");
+            HomeActions.SearchInbox(emailInfo.Mailinator);
             InboxActions.ChooseFirstLetter();
-            Assert.IsTrue(InboxActions.GetRecipientInfo().Equals("testautomationpaul"));
-            Assert.IsTrue(InboxActions.GetSenderInfo().Equals("creamfresh2000@gmail.com"));
+            Assert.IsTrue(InboxActions.GetRecipientInfo().Equals(emailInfo.Mailinator));
+            Assert.IsTrue(InboxActions.GetSenderInfo().Equals(emailInfo.Gmail));
         }
 
     }
